@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.popup {
+  border: none;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: auto;
+}
+
+.popup[open] {
+  animation: slide-in-from-top 0.35s ease-out;
+}
+
+.popup::backdrop {
+  background: rgba(0, 0, 0, 0.9);
+}
