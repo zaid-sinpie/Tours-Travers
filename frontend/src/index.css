@@ -6,7 +6,7 @@
   border: none;
   border-radius: 8px;
   padding: 2rem;
-  margin: auto;
+  background-color: #d7fcf8;
 }
 
 .popup[open] {
@@ -15,4 +15,15 @@
 
 .popup::backdrop {
   background: rgba(0, 0, 0, 0.9);
+}
+
+@keyframes slide-in-from-top {
+  0% {
+    transform: translateY(-15%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

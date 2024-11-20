@@ -1,25 +1,28 @@
-import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Root from './components/pages/Root';
-import Hero from './components/Hero';
+import Root from "./components/pages/Root";
+import Hero from "./components/Hero";
+import Modal from "./components/ui/Modal";
 
 function App() {
   const router = createBrowserRouter([
     {
-      path:'/',
-      element:<Root/>,
-      children:[
+      path: "/",
+      element: <Root />,
+      children: [
         {
-          index:true,
-          element:<Hero/>
+          index: true,
+          element: <Hero />,
         },
-      ]
-    }
-  ])
+      ],
+    },
+  ]);
 
   return (
-    <RouterProvider router={router}/>
-  )
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
-export default App
+export default App;

@@ -1,8 +1,10 @@
-import { useImperativeHandle, useRef, forwardRef, useState } from "react";
+import { useImperativeHandle, useRef, forwardRef } from "react";
 import { createPortal } from "react-dom";
 
-const LoginPop = forwardRef(function LoginPop({ id, children }, ref) {
-  const [userState, setUserState] = useState(false);
+import Login from "../Login";
+import Signup from "../Signup";
+
+const LoginPop = forwardRef(function LoginPop({ userMode }, ref) {
   const dialog = useRef();
 
   useImperativeHandle(ref, () => ({
@@ -22,12 +24,19 @@ const LoginPop = forwardRef(function LoginPop({ id, children }, ref) {
   return createPortal(
     <dialog
       ref={dialog}
-      className="border-none rounded-lg p-8 m-auto bg-white relative transition ease-out duration-350 animate-slide-in"
+      className="border-none m-auto rounded-lg p-8 bg-white transition ease-out duration-350 animate-slide-in z-10 relative"
     >
-      {children}
-      <button onClick={CloseModal} className="mt-4 text-red-500">
-        Close
+      {" "}
+      <button
+        onClick={CloseModal}
+        className="text-red-400 text-2xl absolute top-1 right-4"
+      >
+        <i className="fa-solid fa-xmark"></i>
       </button>
+      <div className="w-full h-full flex justify-center items-center">
+        {userMode === "login" && <Login />}
+        {userMode === "signup" && <Signup />}
+      </div>
     </dialog>,
     document.getElementById("modal")
   );

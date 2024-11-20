@@ -52,7 +52,7 @@ const Hero = () => {
         />
       </div>
       {/* <div className="flex justify-center items-center gap-10"></div> */}
-      <div className="flex justify-center items-center gap-5">
+      <div className="flex justify-center items-center gap-5 ">
         <button
           onClick={goLeft}
           className="px-4 py-1 font-bold text-xl text-white rounded-full bg-black hover:bg-inactive"
