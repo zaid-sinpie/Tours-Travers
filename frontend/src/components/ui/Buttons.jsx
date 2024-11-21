@@ -35,7 +35,7 @@ export const ButtonPlaneBlack = ({ children, ...props }) => {
 
 export const ButtonText = ({ children }) => {
   return (
-    <button className="text-xl hover:underline text-inactive hover:text-black">
+    <button className="text-xl underline text-inactive hover:text-black">
       {children}
     </button>
   );

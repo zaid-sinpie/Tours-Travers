@@ -8,6 +8,7 @@ export default {
         black: "#000",
         inactive: "#697565",
         active: "#3C3D37",
+        secondaryBg: "#F8F8F8",
       },
       backgroundImage: {
         bg1: "url(/bg1.jpg)",

@@ -5,8 +5,8 @@ import { ButtonWhite } from "./ui/Buttons";
 
 const Navigation = ({ openModal, setUserMode }) => {
   return (
-    <header className="w-full py-[.5rem] px-[2rem] text-black fixed top-0 left-0 border z-20 backdrop-blur-2xl">
-      <div className="w-full flex justify-between items-center">
+    <header className="w-full py-[.5rem] px-[2rem] max-sm:px-2 text-black fixed top-0 left-0 border z-20 backdrop-blur-2xl">
+      <div className="w-full flex justify-between max-sm:justify-around items-center">
         <div className="hover:cursor-pointer">
           <Link to="/">
             <h1 className="font-bold text-2xl">LOGO</h1>
