@@ -1,8 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Root from "./components/pages/Root";
-import Hero from "./components/Hero";
-import Modal from "./components/ui/Modal";
+import Hero from "./components/pages/Hero";
+import Login from "./components/pages/Login";
+import Signup from "./components/pages/SignUp";
+import HomePage from "./components/pages/HomePage";
 
 function App() {
   const router = createBrowserRouter([
@@ -11,8 +13,20 @@ function App() {
       element: <Root />,
       children: [
         {
-          index: true,
+          path: "/",
           element: <Hero />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/signup",
+          element: <Signup />,
+        },
+        {
+          path: "/home",
+          element: <HomePage />,
         },
       ],
     },

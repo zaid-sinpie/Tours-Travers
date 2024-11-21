@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import ButtonBlack from "./ui/Buttons";
 import { ButtonWhite } from "./ui/Buttons";
 
@@ -6,10 +8,12 @@ const Navigation = ({ openModal, setUserMode }) => {
     <header className="w-full py-[.5rem] px-[2rem] text-black fixed top-0 left-0 border z-20 backdrop-blur-2xl">
       <div className="w-full flex justify-between items-center">
         <div className="hover:cursor-pointer">
-          <h1 className="font-bold text-2xl">LOGO</h1>
+          <Link to="/">
+            <h1 className="font-bold text-2xl">LOGO</h1>
+          </Link>
         </div>
         <div className="flex justify-center items-center gap-2">
-          <ul>
+          {/* <ul>
             <ButtonBlack
               onClick={() => {
                 setUserMode("login");
@@ -28,6 +32,16 @@ const Navigation = ({ openModal, setUserMode }) => {
             >
               SignUp
             </ButtonWhite>
+          </ul> */}
+          <ul>
+            <Link to="/login">
+              <ButtonBlack>LogIn</ButtonBlack>
+            </Link>
+          </ul>
+          <ul>
+            <Link to="/signup">
+              <ButtonWhite>SignUp</ButtonWhite>
+            </Link>
           </ul>
         </div>
       </div>

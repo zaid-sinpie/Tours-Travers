@@ -32,3 +32,11 @@ export const ButtonPlaneBlack = ({ children, ...props }) => {
     </button>
   );
 };
+
+export const ButtonText = ({ children }) => {
+  return (
+    <button className="text-xl hover:underline text-inactive hover:text-black">
+      {children}
+    </button>
+  );
+};
