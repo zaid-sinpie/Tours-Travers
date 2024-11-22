@@ -14,11 +14,11 @@ const Login = () => {
           </div>
           {/* <input type="hidden" value={"login"} name="type" className="hidden"/> */}
           <div className="flex flex-col justify-center items-start w-full gap-2">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="email">Email</label>
             <input
-              type="text"
-              id="username"
-              name="username"
+              type="email"
+              id="email"
+              name="email"
               className="w-full px-2 py-1 outline-none border border-inactive rounded-md"
             />
           </div>

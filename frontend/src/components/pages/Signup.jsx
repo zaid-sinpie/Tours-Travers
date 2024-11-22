@@ -5,7 +5,11 @@ import { ButtonPlaneBlack } from "../ui/Buttons";
 const Signup = () => {
   return (
     <section className="w-dvw h-dvh flex justify-center items-center">
-      <Form className="w-fit h-fit flex flex-col justify-center items-center gap-4 text-inactive px-10 py-5 border border-inactive rounded-md animate-slideInFromBottom">
+      <Form
+        action="/signup"
+        method="post"
+        className="w-fit h-fit flex flex-col justify-center items-center gap-4 text-inactive px-10 py-5 border border-inactive rounded-md animate-slideInFromBottom"
+      >
         <div className="flex flex-col justify-center items-center w-full gap-4">
           <div className="flex flex-col justify-center items-center w-full gap-2">
             <h1 className="text-2xl font-semibold uppercase tracking-wider">
@@ -14,11 +18,11 @@ const Signup = () => {
           </div>
           {/* <input type="hidden" value={"signup"} name="type" className="hidden"/> */}
           <div className="flex flex-col justify-center items-start w-full gap-2">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="email">Email</label>
             <input
               type="text"
-              id="username"
-              name="username"
+              id="email"
+              name="email"
               className="w-full px-2 py-1 outline-none border border-inactive rounded-md"
             />
           </div>
@@ -54,3 +58,17 @@ const Signup = () => {
 };
 
 export default Signup;
+
+export const action = async ({ request, params }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData.entries());
+  if (!data) {
+    throw new Error("something went wrong");
+  }
+  if (!data["email"].includes("@")) {
+    // show error include @ in email
+    console.error("Invalide Email");
+  }
+  // All Good to go
+  return null;
+};

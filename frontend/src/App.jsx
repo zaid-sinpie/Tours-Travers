@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./components/pages/Root";
 import Hero from "./components/pages/Hero";
 import Login from "./components/pages/Login";
-import Signup from "./components/pages/SignUp";
+import Signup, { action as actionForSignup } from "./components/pages/SignUp";
 import HomePage from "./components/pages/HomePage";
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
         {
           path: "/signup",
           element: <Signup />,
+          action: actionForSignup,
         },
         {
           path: "/home",
