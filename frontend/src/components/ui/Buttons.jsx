@@ -26,16 +26,22 @@ export const ButtonPlaneBlack = ({ children, ...props }) => {
   return (
     <button
       {...props}
-      className="w-[-webkit-fill-available] px-2 py-2 text-white box-content bg-black hover:bg-white hover:text-black border-black border-2 rounded-md transition-all ease-in-out duration-200 font-semibold"
+      className="w-[-webkit-fill-available] px-2 py-2 text-white box-content bg-black hover:bg-white hover:text-black border-black border-2 rounded-md transition-all ease-in-out duration-200 font-semibold max-sm:text-xs"
     >
       {children}
     </button>
   );
 };
 
-export const ButtonText = ({ children }) => {
+export const ButtonText = ({ children, activeLocation, id, ...props }) => {
+  let classes = "";
   return (
-    <button className="text-xl underline text-inactive hover:text-black">
+    <button
+      {...props}
+      className={`text-xl underline hover:text-black ${
+        activeLocation === id ? "text-black" : "text-inactive"
+      }`}
+    >
       {children}
     </button>
   );

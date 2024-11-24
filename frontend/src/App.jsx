@@ -2,8 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Root from "./components/pages/Root";
 import Hero from "./components/pages/Hero";
-import Login from "./components/pages/Login";
-import Signup, { action as actionForSignup } from "./components/pages/SignUp";
+import Login, { action as loginAction } from "./components/pages/Login";
+import Signup, { action as signupAction } from "./components/pages/SignUp";
 import HomePage from "./components/pages/HomePage";
 
 function App() {
@@ -19,11 +19,12 @@ function App() {
         {
           path: "/login",
           element: <Login />,
+          action: loginAction,
         },
         {
           path: "/signup",
           element: <Signup />,
-          action: actionForSignup,
+          action: signupAction,
         },
         {
           path: "/home",

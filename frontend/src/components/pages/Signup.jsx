@@ -69,6 +69,13 @@ export const action = async ({ request, params }) => {
     // show error include @ in email
     console.error("Invalide Email");
   }
+  if (data["password"].length < 4) {
+    console.error("Password must be grater than 4");
+  }
+  if (data["password"] !== data["confirmPassword"]) {
+    console.error("Password and Confirm Password must be same");
+  }
   // All Good to go
+  
   return null;
 };
