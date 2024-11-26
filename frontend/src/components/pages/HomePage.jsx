@@ -3,6 +3,8 @@ import { useState } from "react";
 import { ButtonText } from "../ui/Buttons";
 import PlaceCard from "../ui/PlaceCard";
 
+import bg2 from "/bg2.jpg";
+
 const HomePage = () => {
   const [activeLocation, setActiveLocation] = useState("indian");
 
@@ -57,11 +59,11 @@ const HomePage = () => {
         <div className="h-[70%] w-full bg-secondaryBg rounded-md border border-inactive flex flex-col justify-around items-center gap-5 p-5 overflow-y-auto max-sm:py-10">
           {activeLocation === "indian" && (
             <>
-              <PlaceCard />
-              <PlaceCard />
-              <PlaceCard />
-              <PlaceCard />
-              <PlaceCard />
+              <PlaceCard bg={bg2} />
+              <PlaceCard bg={bg2} />
+              <PlaceCard bg={bg2} />
+              <PlaceCard bg={bg2} />
+              <PlaceCard bg={bg2} />
             </>
           )}
           {activeLocation === "international" && (

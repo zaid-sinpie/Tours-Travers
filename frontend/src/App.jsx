@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./components/pages/Root";
 import Hero from "./components/pages/Hero";
 import Login, { action as loginAction } from "./components/pages/Login";
-import Signup, { action as signupAction } from "./components/pages/SignUp";
+import Signup, { action as signupAction } from "./components/pages/Signup";
 import HomePage from "./components/pages/HomePage";
 
 function App() {

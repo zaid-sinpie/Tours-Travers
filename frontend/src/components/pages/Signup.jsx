@@ -20,7 +20,8 @@ const Signup = () => {
           <div className="flex flex-col justify-center items-start w-full gap-2">
             <label htmlFor="email">Email</label>
             <input
-              type="text"
+              required
+              type="email"
               id="email"
               name="email"
               className="w-full px-2 py-1 outline-none border border-inactive rounded-md"
@@ -31,6 +32,7 @@ const Signup = () => {
               Password
             </label>
             <input
+              required
               type="password"
               id="password"
               name="password"
@@ -42,6 +44,7 @@ const Signup = () => {
               Confirm Password
             </label>
             <input
+              required
               type="password"
               id="confirmPassword"
               name="confirmPassword"
@@ -75,7 +78,19 @@ export const action = async ({ request, params }) => {
   if (data["password"] !== data["confirmPassword"]) {
     console.error("Password and Confirm Password must be same");
   }
+
+  const response = await fetch("http://localhost:3000/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  if (!response.ok) {
+    throw new Error("Something went wrong");
+  } else {
+    console.log("Signup Successfully!");
+  }
   // All Good to go
-  
   return null;
 };

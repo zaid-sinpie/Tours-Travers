@@ -1,11 +1,11 @@
 import bg1 from "/bg1.jpg";
 import { ButtonPlaneBlack } from "./Buttons";
 
-const PlaceCard = () => {
+const PlaceCard = ({ bg }) => {
   return (
     <div className="w-full bg-white border border-inactive rounded-md flex max-sm:flex-col max-xl:flex-col justify-start gap-20 max-sm:gap-5 items-center px-20 max-sm:px-4 py-4">
       <img
-        src={bg1}
+        src={bg ? bg : bg1}
         alt=""
         className="w-[40%] max-sm:w-full max-xl:w-full cursor-pointer"
       />
