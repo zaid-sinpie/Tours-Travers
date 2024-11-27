@@ -70,8 +70,12 @@ export const action = async ({ request, params }) => {
     body: JSON.stringify(data),
   });
 
+  const result = await response.json();
+
   if (!response.ok) {
-    console.error("something went wrong");
+    throw new Error(result.message || "Something went wrong");
+  } else {
+    console.log(result.message || "User Found");
   }
 
   return null;
