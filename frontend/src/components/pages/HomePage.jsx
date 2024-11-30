@@ -1,20 +1,18 @@
 import { useState } from "react";
-
+import { useLoaderData } from "react-router-dom";
 import { ButtonText } from "../ui/Buttons";
 import PlaceCard from "../ui/PlaceCard";
 
-import bg2 from "/bg2.jpg";
-
 const HomePage = () => {
   const [activeLocation, setActiveLocation] = useState("indian");
+  const data = useLoaderData(); // Fetched data from loader
 
   const buttonIndianTours = () => {
     setActiveLocation("indian");
-    // window.location.reload();
   };
+
   const buttonInternationalTours = () => {
     setActiveLocation("international");
-    // window.location.reload();
   };
 
   return (
@@ -57,23 +55,14 @@ const HomePage = () => {
           </div>
         </div>
         <div className="h-[70%] w-full bg-secondaryBg rounded-md border border-inactive flex flex-col justify-around items-center gap-5 p-5 overflow-y-auto max-sm:py-10">
-          {activeLocation === "indian" && (
-            <>
-              <PlaceCard bg={bg2} />
-              <PlaceCard bg={bg2} />
-              <PlaceCard bg={bg2} />
-              <PlaceCard bg={bg2} />
-              <PlaceCard bg={bg2} />
-            </>
-          )}
-          {activeLocation === "international" && (
-            <>
-              <PlaceCard />
-              <PlaceCard />
-              <PlaceCard />
-              <PlaceCard />
-            </>
-          )}
+          {activeLocation === "indian" &&
+            data.toursDataIndian.map((tour, index) => (
+              <PlaceCard key={index} tour={tour} />
+            ))}
+          {activeLocation === "international" &&
+            data.toursDataInternational.map((tour, index) => (
+              <PlaceCard key={index} tour={tour} />
+            ))}
         </div>
       </div>
     </section>
@@ -81,3 +70,13 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+// loaders/homeLoader.js
+export async function homeLoader() {
+  const response = await fetch("http://localhost:3000/home");
+  if (!response.ok) {
+    throw new Error("Failed to fetch home data");
+  }
+  const data = await response.json();
+  return data;
+}

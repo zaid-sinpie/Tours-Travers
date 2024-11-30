@@ -1,8 +1,8 @@
 import { useImperativeHandle, useRef, forwardRef } from "react";
 import { createPortal } from "react-dom";
 
-import Login from "../pages/Login";
-import Signup from "../pages/SignUp";
+// import Login from "../pages/Login";
+// import Signup from "../pages/SignUp";
 
 const LoginPop = forwardRef(function LoginPop({ userMode }, ref) {
   const dialog = useRef();

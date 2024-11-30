@@ -4,7 +4,8 @@ import Root from "./components/pages/Root";
 import Hero from "./components/pages/Hero";
 import Login, { action as loginAction } from "./components/pages/Login";
 import Signup, { action as signupAction } from "./components/pages/Signup";
-import HomePage from "./components/pages/HomePage";
+import HomePage, { homeLoader } from "./components/pages/HomePage";
+import Place from "./components/pages/Place";
 
 function App() {
   const router = createBrowserRouter([
@@ -29,6 +30,13 @@ function App() {
         {
           path: "/home",
           element: <HomePage />,
+          loader: homeLoader,
+          children: [
+            {
+              path: "/home/place/:id",
+              element: <Place />,
+            },
+          ],
         },
       ],
     },

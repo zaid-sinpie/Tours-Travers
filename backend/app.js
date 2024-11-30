@@ -4,6 +4,11 @@ const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
 
+// const { toursDataInternational } = require("./util/data");
+// const { toursDataIndian } = require("./util/data");
+
+const toursData = require("./util/data");
+
 const p = path.join(
   path.dirname(process.mainModule.filename),
   "userData",
@@ -13,6 +18,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({ origin: "*" }));
+app.use(cors());
 app.use(bodyParser.json());
 
 app.post("/login", (req, res, next) => {
@@ -57,6 +63,16 @@ app.post("/signup", (req, res, next) => {
       res.status(400).json({ message: "Email already exists" });
     }
   });
+});
+
+app.get("/home", (req, res) => {
+  const { toursDataInternational, toursDataIndian } = toursData;
+  // try {
+  //   res.status(200).json(data); // No need for JSON.stringify
+  // } catch (error) {
+  //   res.status(500).json({ error: "Internal Server Error" });
+  // }
+  res.status(200).json({ toursDataInternational, toursDataIndian });
 });
 
 app.listen(3000);
