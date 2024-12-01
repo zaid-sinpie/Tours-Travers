@@ -38,7 +38,7 @@ export const ButtonText = ({ children, activeLocation, id, ...props }) => {
   return (
     <button
       {...props}
-      className={`text-xl underline hover:text-black ${
+      className={`text-xl underline hover:text-black max-sm:text-lg ${
         activeLocation === id ? "text-black" : "text-inactive"
       }`}
     >

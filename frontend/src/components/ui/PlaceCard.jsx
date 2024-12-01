@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import { ButtonPlaneBlack } from "./Buttons";
 
 const PlaceCard = ({ tour }) => {
@@ -33,7 +35,9 @@ const PlaceCard = ({ tour }) => {
           <div className="flex flex-col justify-center items-start gap-1">
             <h4 className="text-sm text-inactive">Just at /Person</h4>
             <h1 className="text-xl">{tour.price}₹</h1>
-            <ButtonPlaneBlack>Book Now</ButtonPlaneBlack>
+            <Link to={`/place/${tour.id}`}>
+              <ButtonPlaneBlack>Book Now</ButtonPlaneBlack>
+            </Link>
           </div>
           <div className="flex justify-center items-center gap-4">
             <h2 className="text-inactive">Rating</h2>

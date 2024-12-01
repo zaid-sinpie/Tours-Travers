@@ -4,7 +4,10 @@ import Root from "./components/pages/Root";
 import Hero from "./components/pages/Hero";
 import Login, { action as loginAction } from "./components/pages/Login";
 import Signup, { action as signupAction } from "./components/pages/Signup";
-import HomePage, { homeLoader } from "./components/pages/HomePage";
+import HomePage, {
+  homeLoader,
+  actionForAddTour,
+} from "./components/pages/HomePage";
 import Place from "./components/pages/Place";
 
 function App() {
@@ -30,13 +33,12 @@ function App() {
         {
           path: "/home",
           element: <HomePage />,
+          action: actionForAddTour,
           loader: homeLoader,
-          children: [
-            {
-              path: "/home/place/:id",
-              element: <Place />,
-            },
-          ],
+        },
+        {
+          path: "place/:id",
+          element: <Place />,
         },
       ],
     },
