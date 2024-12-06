@@ -35,7 +35,7 @@ const PlaceCard = ({ tour }) => {
           <div className="flex flex-col justify-center items-start gap-1">
             <h4 className="text-sm text-inactive">Just at /Person</h4>
             <h1 className="text-xl">{tour.price}₹</h1>
-            <Link to={`/place/${tour.id}`}>
+            <Link to={`/place/${tour.name}`}>
               <ButtonPlaneBlack>Book Now</ButtonPlaneBlack>
             </Link>
           </div>

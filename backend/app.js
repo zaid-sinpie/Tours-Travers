@@ -27,7 +27,7 @@ app.use(cors({ origin: "*" }));
 app.use(cors());
 app.use(bodyParser.json());
 
-app.post("/login", (req, res, next) => {  
+app.post("/login", (req, res, next) => {
   const { email, password } = req.body;
   fs.readFile(p, (err, fileContent) => {
     if (!err) {
@@ -99,6 +99,26 @@ app.post("/home", (req, res, next) => {
 });
 
 app.get("/home", async (req, res, next) => {
+  const fs = require("fs").promises;
+
+  try {
+    const indianData = await fs.readFile(pathForIndianTours, "utf8");
+    const internationalData = await fs.readFile(
+      pathForInternationalTours,
+      "utf8"
+    );
+
+    const indian = JSON.parse(indianData);
+    const international = JSON.parse(internationalData);
+
+    res.status(200).json({ indian, international });
+  } catch (err) {
+    console.error("Error reading files:", err);
+    res.status(500).json({ error: "Failed to load tour data" });
+  }
+});
+
+app.get("/place", async (req, res, next) => {
   const fs = require("fs").promises;
 
   try {

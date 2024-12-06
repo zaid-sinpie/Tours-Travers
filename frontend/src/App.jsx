@@ -8,7 +8,7 @@ import HomePage, {
   homeLoader,
   actionForAddTour,
 } from "./components/pages/HomePage";
-import Place from "./components/pages/Place";
+import Place, {loader as placeLoader} from "./components/pages/Place";
 
 function App() {
   const router = createBrowserRouter([
@@ -37,8 +37,9 @@ function App() {
           loader: homeLoader,
         },
         {
-          path: "place/:id",
+          path: "place/:name",
           element: <Place />,
+          loader:placeLoader
         },
       ],
     },

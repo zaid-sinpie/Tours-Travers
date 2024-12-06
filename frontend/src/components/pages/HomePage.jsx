@@ -75,7 +75,7 @@ const HomePage = () => {
           {international &&
             activeLocation === "international" &&
             international.map((tour, index) => (
-              <PlaceCard key={index} tour={tour} />
+              <PlaceCard key={index} tour={tour} indian={indian} international={international}/>
             ))}
 
           {activeLocation === "addTours" && (
