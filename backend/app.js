@@ -20,6 +20,12 @@ const pathForInternationalTours = path.join(
   "internationalTours.json"
 );
 
+const bookings = path.join(
+  path.dirname(process.mainModule.filename),
+  "bookings",
+  "allBooking.json"
+);
+
 const app = express();
 
 app.use(express.json());
@@ -136,6 +142,37 @@ app.get("/place", async (req, res, next) => {
     console.error("Error reading files:", err);
     res.status(500).json({ error: "Failed to load tour data" });
   }
+});
+
+app.post("/place", (req, res, next) => {
+  const price = req.body.price * req.body.peoples;
+
+  fs.readFile(bookings, (err, fileContent) => {
+    if (!err) {
+      const bookingData = fileContent ? JSON.parse(fileContent) : [];
+      const newBooking = {
+        id: bookingData.length + 1,
+        fullName: req.body.fullName,
+        email: req.body.email,
+        address: req.body.address,
+        phone: req.body.phone,
+        place: req.body.place,
+        to: req.body.to,
+        from: req.body.from,
+        peoples: req.body.peoples,
+        price: price,
+      };
+      bookingData.push(newBooking);
+
+      fs.writeFile(bookings, JSON.stringify(bookingData), (err) => {
+        if (err) console.error(err);
+      });
+      res.status(200).send("Booking Done Successfully!");
+    } else {
+      console.error("File Read Error:", err);
+      res.status(500).json({ error: "Failed to load tour data" });
+    }
+  });
 });
 
 app.listen(3000);
