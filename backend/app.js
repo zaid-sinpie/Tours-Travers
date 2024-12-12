@@ -51,29 +51,40 @@ app.post("/login", (req, res, next) => {
   });
 });
 
-app.post("/signup", (req, res, next) => {
+app.post("/signup", (req, res) => {
   const { email, password, confirmPassword } = req.body;
+
+  if (!email || !password || !confirmPassword) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
   fs.readFile(p, (err, fileContent) => {
-    if (err) {
-      console.log(err);
+    if (err && err.code !== "ENOENT") {
+      console.error(err);
+      return res.status(500).json({ message: "Internal server error" });
     }
 
     const users = fileContent ? JSON.parse(fileContent) : [];
+    const userExists = users.some((user) => user.email === email);
 
-    const user = users.find((user) => user.email === email);
-
-    if (!user) {
-      const id = users.length;
-
-      users.push({ email, password, confirmPassword, id });
-
-      fs.writeFile(p, JSON.stringify(users), (err) => {
-        if (err) console.log(err);
-      });
-      res.status(200).send("Signup successfully");
-    } else {
-      res.status(400).json({ message: "Email already exists" });
+    if (userExists) {
+      return res.status(400).json({ message: "Email already exists" });
     }
+
+    if (password !== confirmPassword) {
+      return res.status(400).json({ message: "Passwords do not match" });
+    }
+
+    const id = users.length + 1;
+    users.push({ email, password, id });
+
+    fs.writeFile(p, JSON.stringify(users), (writeErr) => {
+      if (writeErr) {
+        console.error(writeErr);
+        return res.status(500).json({ message: "Failed to save user" });
+      }
+      return res.status(200).json({ message: "Signup successfully" });
+    });
   });
 });
 

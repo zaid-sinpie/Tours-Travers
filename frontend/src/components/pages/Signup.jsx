@@ -1,4 +1,4 @@
-import { Form } from "react-router-dom";
+import { Form, redirect } from "react-router-dom";
 
 import { ButtonPlaneBlack } from "../ui/Buttons";
 
@@ -62,35 +62,45 @@ const Signup = () => {
 
 export default Signup;
 
-export const action = async ({ request, params }) => {
+export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData.entries());
-  if (!data) {
-    throw new Error("something went wrong");
-  }
-  if (!data["email"].includes("@")) {
-    // show error include @ in email
-    console.error("Invalide Email");
-  }
-  if (data["password"].length < 4) {
-    console.error("Password must be grater than 4");
-  }
-  if (data["password"] !== data["confirmPassword"]) {
-    console.error("Password and Confirm Password must be same");
+
+  // Validation before sending data to the server
+  if (!data.email.includes("@")) {
+    console.error("Invalid email: Must include '@'");
+    return { error: "Invalid email" }; // Return error for UI handling
   }
 
-  const response = await fetch("http://localhost:3000/signup", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  if (!response.ok) {
-    throw new Error("Something went wrong");
-  } else {
-    console.log("Signup Successfully!");
+  if (data.password.length < 4) {
+    console.error("Password must be greater than 4 characters");
+    return { error: "Weak password" };
   }
-  // All Good to go
-  return null;
+
+  if (data.password !== data.confirmPassword) {
+    console.error("Passwords do not match");
+    return { error: "Passwords do not match" };
+  }
+
+  try {
+    const response = await fetch("http://localhost:3000/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      alert(errorResponse.message);
+      return { error: errorResponse.message }; // Error for UI
+    }
+
+    const result = await response.json();
+    console.log(result.message);
+    alert("Signup Successfully!");
+    return redirect("/home");
+  } catch (error) {
+    console.error("Network error:", error);
+    return { error: "Network error occurred" }; // Error for UI
+  }
 };

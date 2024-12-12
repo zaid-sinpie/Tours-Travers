@@ -1,5 +1,9 @@
 import { useLoaderData, Form, useParams } from "react-router-dom";
 import { useRef } from "react";
+import { redirect } from "react-router-dom";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Input from "../ui/Input";
 import { ButtonPlaneBlack } from "../ui/Buttons";
@@ -44,6 +48,7 @@ const Place = () => {
           </Form>
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
 };
@@ -77,5 +82,8 @@ export const action = async ({ request, params }) => {
     console.log("data Saved Successfully!!");
   }
 
-  return null;
+  // toast.success("Booking successfull Redirecting to home");
+  alert("Booking don successfully");
+
+  return redirect("/home");
 };

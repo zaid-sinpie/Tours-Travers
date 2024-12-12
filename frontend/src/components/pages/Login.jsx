@@ -1,4 +1,4 @@
-import { Form } from "react-router-dom";
+import { Form, redirect } from "react-router-dom";
 
 import { ButtonPlaneBlack } from "../ui/Buttons";
 
@@ -59,7 +59,8 @@ export const action = async ({ request, params }) => {
   }
 
   if (!data["email"].includes("@")) {
-    console.error("Please enter a valide Email");
+    // console.error("Please enter a valide Email");
+    alert("Please enter a valide Email");
   }
 
   const response = await fetch("http://localhost:3000/login", {
@@ -73,7 +74,9 @@ export const action = async ({ request, params }) => {
   const result = await response.json();
 
   if (!response.ok) {
-    throw new Error(result.message || "Something went wrong");
+    // throw new Error(result.message || "Something went wrong");
+    alert(result.message);
+    redirect("/login");
   } else {
     console.log(result.message || "User Found");
   }

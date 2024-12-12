@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { Form, useLoaderData } from "react-router-dom";
+
 import { ButtonText } from "../ui/Buttons";
 import PlaceCard from "../ui/PlaceCard";
 import Input from "../ui/Input";
@@ -75,7 +76,12 @@ const HomePage = () => {
           {international &&
             activeLocation === "international" &&
             international.map((tour, index) => (
-              <PlaceCard key={index} tour={tour} indian={indian} international={international}/>
+              <PlaceCard
+                key={index}
+                tour={tour}
+                indian={indian}
+                international={international}
+              />
             ))}
 
           {activeLocation === "addTours" && (
@@ -101,6 +107,7 @@ const HomePage = () => {
               <Input title={"From"} id={"from"} type="date" />
               <Input title={"To"} id={"to"} type="date" />
               <div className="flex flex-col justify-center items-start w-full gap-2">
+                <label htmlFor="type">Tour Type</label>
                 <select
                   name="type"
                   id="type"

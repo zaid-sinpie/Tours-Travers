@@ -13,6 +13,8 @@ import Place, {
   action as bookingAction,
 } from "./components/pages/Place";
 
+
+
 function App() {
   const router = createBrowserRouter([
     {
